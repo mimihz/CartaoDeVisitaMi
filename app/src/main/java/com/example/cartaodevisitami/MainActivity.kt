@@ -76,6 +76,7 @@ fun Rodape() {
 fun Contato() {
     Row() {
 
+
         Image(
             painter = painterResource(id = R.drawable.gmaillilas),
             contentDescription = null,
@@ -90,9 +91,6 @@ fun Contato() {
 
     }
 }
-
-
-
 
 @Composable
 fun Cabecalho() {
