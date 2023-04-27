@@ -19,9 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,19 +36,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MeuUniversoTheme{
-                // A surface container using the 'background' color from the theme
-                Surface(
+            CartaoDeVisitaMiTheme{
+                Surface (
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
+                    color = Color.White
+                ){
                     PlanoDeFundo()
                 }
             }
         }
     }
 }
-
+@Preview
 @Composable
 fun PlanoDeFundo(){
     Image(
@@ -53,40 +57,55 @@ fun PlanoDeFundo(){
     )
     Cabecalho()
     Rodape()
-
 }
 
 @Composable
 fun Rodape() {
     Column(
         verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.Start,
         modifier = Modifier
             .padding(bottom = 40.dp)
 
     ) {
-        Contato()
-        Contato()
-        Contato()
+        Contato(
+            painter = painterResource(id = R.drawable.gmaillilas),
+            text = "michelleluiza0902@gmail.com"
+        )
+
+        Contato(
+            painter = painterResource(id = R.drawable.icone_de_telefone),
+            text = "(11) 93397-5551"
+        )
+
+        Contato(
+            painter = painterResource(id = R.drawable.instagram),
+            text = "chelle_17_"
+        )
 
     }
 }
 
 @Composable
-fun Contato() {
+fun Contato(painter: Painter, text:String) {
     Row() {
-
-
         Image(
-            painter = painterResource(id = R.drawable.gmaillilas),
+            painter =painter,
             contentDescription = null,
             modifier = Modifier
-                .size(50.dp)
+                .size(40.dp)
                 .clip(CircleShape)
         )
 
         Text(
-            text = "(11) 933975551 "
+            text = text,
+            fontSize = 22.sp,
+            color = Color.White,
+            textAlign = TextAlign.Left,
+            fontFamily = FontFamily.Monospace,
+            modifier = Modifier
+                .padding(start = 9.dp)
+
         )
 
     }
@@ -96,7 +115,9 @@ fun Contato() {
 fun Cabecalho() {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
     ) {
         Image(
             painter = painterResource(id = R.drawable.ceu),
